@@ -1,36 +1,1687 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Frangelli's Bakery | South Philadelphia</title>
+<title>Frangelli's Bakery | South Philadelphia</title>
 
-    <meta
-        name="description"
-        content="Frangelli's Bakery — handmade doughnuts, cakes, cookies, Franollis and more in South Philadelphia."
-    >
+<style>
 
-    <link rel="stylesheet" href="style.css">
+/* =========================================
+   FRANGELLI'S — MAIN DESIGN
+========================================= */
+
+:root {
+    --cream: #f4ecdf;
+    --cream-light: #fffaf2;
+    --cream-dark: #dfcdb7;
+
+    --wood-dark: #29170e;
+    --wood: #4b2b1b;
+    --wood-mid: #68432c;
+    --wood-light: #8a6245;
+
+    --brown: #352117;
+    --brown-light: #705746;
+
+    --red: #914333;
+    --red-dark: #713126;
+
+    --white: #fffaf2;
+
+    --shadow: 0 18px 45px rgba(48, 27, 15, .13);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    margin: 0;
+    color: var(--brown);
+    background: var(--cream);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================
+   WOOD TEXTURE
+========================================= */
+
+.wood {
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--wood-dark) 0px,
+            var(--wood) 10px,
+            var(--wood-mid) 18px,
+            var(--wood) 28px,
+            var(--wood-dark) 38px
+        );
+}
+
+.wood::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 9px,
+            rgba(255,255,255,.025) 10px
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(255,250,242,.97);
+
+    border-bottom: 1px solid var(--cream-dark);
+
+    box-shadow:
+        0 4px 20px rgba(45,25,14,.08);
+}
+
+.header-inner {
+    max-width: 1250px;
+    margin: auto;
+
+    padding: 16px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.logo {
+    width: 165px;
+    height: auto;
+
+    transition:
+        transform .3s ease;
+}
+
+.logo:hover {
+    transform:
+        translateY(-2px)
+        rotate(-1deg);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 28px;
+}
+
+.nav-links a {
+    position: relative;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    transition:
+        color .25s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--red);
+
+    transition:
+        width .25s ease;
+}
+
+.nav-links a:hover {
+    color: var(--red);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.header-phone {
+    color: var(--wood);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   GENERAL
+========================================= */
+
+.section {
+    max-width: 1200px;
+    margin: auto;
+
+    padding:
+        100px 30px;
+}
+
+.eyebrow {
+    margin: 0 0 15px;
+
+    color: var(--red);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .18em;
+
+    text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight: 400;
+
+    line-height: 1.05;
+}
+
+h2 {
+    font-size:
+        clamp(42px, 6vw, 70px);
+
+    letter-spacing: -.035em;
+}
+
+.centered {
+    text-align: center;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 13px 22px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 9px 20px rgba(45,25,14,.18);
+}
+
+.btn-primary {
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--red-dark)
+        );
+
+    color: white;
+}
+
+.btn-outline {
+    border: 1px solid var(--brown);
+}
+
+.btn-outline:hover {
+    background: var(--brown);
+    color: white;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    max-width: 1250px;
+    margin: auto;
+
+    min-height: 690px;
+
+    padding:
+        75px 30px 90px;
+
+    display: grid;
+
+    grid-template-columns:
+        .9fr
+        1.1fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.hero-text {
+    animation:
+        fadeUp .8s ease both;
+}
+
+.hero h1 {
+    margin-bottom: 25px;
+
+    font-size:
+        clamp(55px, 7vw, 92px);
+
+    letter-spacing: -.05em;
+}
+
+.hero-description {
+    max-width: 500px;
+
+    color: var(--brown-light);
+
+    font-size: 16px;
+}
+
+.hero-buttons {
+    margin-top: 32px;
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.hero-image-wrap {
+    position: relative;
+
+    animation:
+        imageIn .9s ease both;
+}
+
+.hero-image {
+    width: 100%;
+    height: 540px;
+
+    object-fit: cover;
+
+    border: 7px solid var(--white);
+
+    outline: 1px solid var(--cream-dark);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .5s ease;
+}
+
+.hero-image-wrap:hover .hero-image {
+    transform: scale(1.015);
+}
+
+.hero-image-wrap::after {
+    content: "";
+
+    position: absolute;
+
+    right: -15px;
+    top: -15px;
+
+    width: 100px;
+    height: 100px;
+
+    z-index: -1;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--wood-dark) 0,
+            var(--wood) 9px,
+            var(--wood-mid) 17px,
+            var(--wood) 25px
+        );
+}
+
+.image-caption {
+    position: absolute;
+
+    left: 25px;
+    bottom: 25px;
+
+    padding: 15px 19px;
+
+    background: rgba(255,250,242,.96);
+
+    box-shadow:
+        0 8px 20px rgba(40,22,12,.15);
+
+    animation:
+        float 4s ease-in-out infinite;
+}
+
+.image-caption span {
+    display: block;
+
+    color: var(--red);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: .15em;
+}
+
+.image-caption strong {
+    display: block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 22px;
+}
+
+
+/* =========================================
+   STORY
+========================================= */
+
+.story-section {
+    border-top: 1px solid var(--cream-dark);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.2),
+            transparent,
+            rgba(255,255,255,.2)
+        );
+}
+
+.story-grid {
+    margin-top: 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        280px
+        1fr;
+
+    gap: 75px;
+}
+
+.year-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 45px 30px;
+
+    color: white;
+
+    box-shadow: var(--shadow);
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #29170e 0,
+            #4b2b1b 12px,
+            #68432c 19px,
+            #3b2114 28px
+        );
+}
+
+.year-card span {
+    font-size: 11px;
+    letter-spacing: .15em;
+}
+
+.year-card strong {
+    display: block;
+
+    margin: 5px 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 65px;
+    font-weight: 400;
+}
+
+.year-card p {
+    margin: 0;
+
+    color: #d6c5b7;
+
+    font-size: 13px;
+}
+
+.story-copy {
+    max-width: 700px;
+
+    color: var(--brown-light);
+
+    font-size: 17px;
+}
+
+.story-copy p {
+    margin:
+        0 0 24px;
+}
+
+
+/* =========================================
+   FAVORITES
+========================================= */
+
+.favorites-section {
+    max-width: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eadbc7,
+            #f5eadc
+        );
+
+    border-top: 1px solid var(--cream-dark);
+    border-bottom: 1px solid var(--cream-dark);
+}
+
+.favorites-inner {
+    max-width: 1200px;
+    margin: auto;
+
+    padding:
+        100px 30px;
+}
+
+.favorites-intro {
+    max-width: 620px;
+    margin: auto;
+}
+
+.favorites-intro p:last-child {
+    color: var(--brown-light);
+}
+
+.favorites-grid {
+    margin-top: 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 24px;
+}
+
+.food-card {
+    overflow: hidden;
+
+    background: var(--white);
+
+    border: 1px solid rgba(70,40,20,.08);
+
+    box-shadow:
+        0 12px 30px rgba(50,28,15,.09);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 22px 40px rgba(50,28,15,.16);
+}
+
+.food-image {
+    width: 100%;
+    height: 390px;
+
+    object-fit: cover;
+
+    transition:
+        transform .65s ease;
+}
+
+.food-card:hover .food-image {
+    transform: scale(1.045);
+}
+
+.food-content {
+    padding: 27px 28px 32px;
+}
+
+.food-number {
+    margin: 0 0 8px;
+
+    color: var(--red);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .1em;
+}
+
+.food-content h3 {
+    margin-bottom: 10px;
+
+    font-size: 31px;
+}
+
+.food-content p {
+    color: var(--brown-light);
+
+    font-size: 14px;
+}
+
+.text-link {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    color: var(--red);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+
+    transition:
+        transform .2s ease;
+}
+
+.text-link:hover {
+    transform: translateX(5px);
+}
+
+
+/* =========================================
+   HANDMADE
+========================================= */
+
+.handmade-strip {
+    position: relative;
+
+    overflow: hidden;
+
+    padding:
+        55px max(30px, calc((100vw - 1140px) / 2));
+
+    color: white;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #29170e 0,
+            #432717 12px,
+            #5d3823 20px,
+            #351d12 31px
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 40px;
+}
+
+.handmade-strip::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 10px,
+            rgba(255,255,255,.025) 11px
+        );
+
+    pointer-events: none;
+}
+
+.handmade-item {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+
+    gap: 17px;
+
+    align-items: flex-start;
+}
+
+.handmade-icon {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    border: 1px solid #80695b;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+
+    color: #ddcec1;
+
+    transition:
+        transform .3s ease;
+}
+
+.handmade-item:hover .handmade-icon {
+    transform:
+        rotate(8deg)
+        scale(1.08);
+}
+
+.handmade-item strong {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.handmade-item p {
+    margin: 3px 0 0;
+
+    color: #c7b4a5;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   FRANOLLI
+========================================= */
+
+.feature-section {
+    display: grid;
+
+    grid-template-columns:
+        1.05fr
+        .95fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.feature-image-wrap {
+    padding: 12px;
+
+    background: var(--cream-dark);
+
+    border: 1px solid #cdb79e;
+
+    box-shadow: var(--shadow);
+}
+
+.feature-image {
+    width: 100%;
+    height: auto;
+}
+
+.feature-content {
+    max-width: 530px;
+}
+
+.feature-content h2 {
+    margin-bottom: 28px;
+}
+
+.feature-content p {
+    color: var(--brown-light);
+
+    font-size: 16px;
+}
+
+blockquote {
+    margin:
+        32px 0;
+
+    padding-left: 22px;
+
+    border-left:
+        3px solid var(--red);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 24px;
+
+    line-height: 1.35;
+}
+
+.small-note {
+    font-size: 12px !important;
+}
+
+
+/* =========================================
+   DID YOU KNOW
+========================================= */
+
+.did-you-know {
+    padding:
+        100px 30px;
+
+    background:
+        #e7d6c0;
+}
+
+.did-you-know-card {
+    position: relative;
+
+    overflow: hidden;
+
+    max-width: 1140px;
+
+    margin: auto;
+
+    padding: 60px;
+
+    color: white;
+
+    box-shadow: var(--shadow);
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #29170e 0,
+            #442718 11px,
+            #633d27 19px,
+            #321c11 29px
+        );
+}
+
+.did-you-know-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 10px,
+            rgba(255,255,255,.025) 11px
+        );
+}
+
+.did-you-know-title {
+    position: relative;
+    z-index: 1;
+
+    padding-bottom: 30px;
+
+    border-bottom:
+        1px solid #634d40;
+}
+
+.did-you-know-title .eyebrow {
+    color: #d99885;
+}
+
+.did-you-know-title h2 {
+    margin: 0;
+}
+
+.fact-grid {
+    position: relative;
+    z-index: 1;
+
+    padding-top: 40px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 40px;
+}
+
+.fact {
+    display: grid;
+
+    grid-template-columns:
+        35px 1fr;
+
+    gap: 15px;
+}
+
+.fact-number {
+    color: #d38a75;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.fact h3 {
+    margin:
+        0 0 10px;
+
+    font-size: 23px;
+}
+
+.fact p {
+    margin: 0;
+
+    color: #cdbbae;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   VIDEO
+========================================= */
+
+.video-section {
+    max-width: 1100px;
+}
+
+.video-description {
+    max-width: 600px;
+
+    margin:
+        18px auto 0;
+
+    color: var(--brown-light);
+}
+
+.video-wrapper {
+    position: relative;
+
+    margin-top: 50px;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    background: var(--brown);
+
+    border: 8px solid white;
+
+    outline: 1px solid var(--cream-dark);
+
+    box-shadow: var(--shadow);
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* =========================================
+   REVIEWS
+========================================= */
+
+.reviews-section {
+    max-width: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eadbc7,
+            #f5eadc
+        );
+}
+
+.reviews-inner {
+    max-width: 1200px;
+    margin: auto;
+
+    padding:
+        100px 30px;
+}
+
+.reviews-grid {
+    margin-top: 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.review-card {
+    min-height: 280px;
+
+    padding: 30px;
+
+    background: var(--white);
+
+    border-top:
+        3px solid var(--red);
+
+    box-shadow:
+        0 10px 25px rgba(50,28,15,.07);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 32px rgba(50,28,15,.13);
+}
+
+.quote {
+    color: var(--red);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 55px;
+
+    line-height: .7;
+}
+
+.review-card p {
+    margin:
+        24px 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 19px;
+
+    line-height: 1.4;
+}
+
+.review-source {
+    color: var(--brown-light);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   VISIT
+========================================= */
+
+.visit-section {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        420px;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.visit-description {
+    max-width: 500px;
+
+    color: var(--brown-light);
+
+    font-size: 16px;
+}
+
+.address {
+    margin:
+        30px 0;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.address strong {
+    margin-bottom: 7px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 24px;
+
+    font-weight: 400;
+}
+
+.address span {
+    color: var(--brown-light);
+
+    font-size: 14px;
+}
+
+.hours-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 40px;
+
+    color: white;
+
+    box-shadow: var(--shadow);
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #29170e 0,
+            #462818 12px,
+            #603b26 19px,
+            #301a10 29px
+        );
+}
+
+.hours-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 10px,
+            rgba(255,255,255,.02) 11px
+        );
+}
+
+.hours-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hours-card .eyebrow {
+    color: #d99885;
+}
+
+.hours-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 12px 0;
+
+    border-bottom:
+        1px solid #5a4336;
+
+    font-size: 12px;
+}
+
+.hours-note {
+    margin-top: 20px;
+
+    color: #bca99b;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   SOCIAL
+========================================= */
+
+.social-section {
+    position: relative;
+
+    overflow: hidden;
+
+    padding:
+        100px 30px;
+
+    color: white;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--red-dark)
+        );
+}
+
+.social-section h2 {
+    margin-bottom: 35px;
+}
+
+.social-links {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.social-links a {
+    padding:
+        12px 19px;
+
+    border:
+        1px solid rgba(255,255,255,.5);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+
+    background: white;
+
+    color: var(--red);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    color: white;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #21130c 0,
+            #2f1a10 12px,
+            #422617 20px,
+            #24140c 30px
+        );
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+
+    padding:
+        55px 30px 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 30px;
+}
+
+.footer-logo {
+    width: 150px;
+
+    filter:
+        brightness(0)
+        invert(1);
+
+    opacity: .9;
+}
+
+.footer-info {
+    justify-self: end;
+
+    text-align: right;
+
+    color: #bba99c;
+
+    font-size: 12px;
+}
+
+.footer-info p {
+    margin: 2px 0;
+}
+
+.footer-bottom {
+    grid-column: 1 / -1;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid #49352b;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #8f7d71;
+
+    font-size: 10px;
+}
+
+.footer-bottom a {
+    color: #c8b6a9;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes imageIn {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .header-phone {
+        display: none;
+    }
+
+    .header-inner {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 62px;
+    }
+
+    .food-image {
+        height: 320px;
+    }
+
+    .reviews-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .visit-section {
+        gap: 45px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 760px) {
+
+    .header-inner {
+        padding:
+            14px 18px;
+
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+    .logo {
+        width: 145px;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        gap:
+            10px 16px;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+    }
+
+    .section {
+        padding:
+            75px 20px;
+    }
+
+    .hero {
+        display: flex;
+
+        flex-direction: column;
+
+        min-height: auto;
+
+        padding:
+            55px 20px 75px;
+
+        gap: 45px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(50px, 15vw, 70px);
+    }
+
+    .hero-image {
+        height: 420px;
+    }
+
+    .favorites-inner,
+    .reviews-inner {
+        padding:
+            75px 20px;
+    }
+
+    .favorites-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .food-image {
+        height: 390px;
+    }
+
+    .handmade-strip {
+        padding:
+            50px 20px;
+
+        grid-template-columns:
+            1fr;
+
+        gap: 30px;
+    }
+
+    .feature-section {
+        grid-template-columns:
+            1fr;
+
+        gap: 45px;
+    }
+
+    .did-you-know {
+        padding:
+            75px 20px;
+    }
+
+    .did-you-know-card {
+        padding:
+            40px 25px;
+    }
+
+    .fact-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 32px;
+    }
+
+    .reviews-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .visit-section {
+        grid-template-columns:
+            1fr;
+    }
+
+    .footer-inner {
+        grid-template-columns:
+            1fr;
+
+        padding:
+            45px 20px 25px;
+    }
+
+    .footer-info {
+        justify-self: start;
+
+        text-align: left;
+    }
+
+    .footer-bottom {
+        grid-column: auto;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 430px) {
+
+    .nav-links {
+        gap:
+            8px 11px;
+    }
+
+    .nav-links a {
+        font-size: 8px;
+    }
+
+    .hero-image {
+        height: 350px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .food-image {
+        height: 350px;
+    }
+
+    .hours-row {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-<!-- =========================
+
+<!-- ======================================
      HEADER
-========================= -->
+======================================= -->
 
 <header class="site-header">
 
     <div class="header-inner">
 
-        <a href="#top" class="logo-link" aria-label="Frangelli's Bakery home">
+        <a href="#top">
             <img
+                class="logo"
                 src="https://frangellis.com/images/frangellis-logo-clear.png?crc=4238155147"
                 alt="Frangelli's Bakery"
-                class="logo"
             >
         </a>
+
 
         <nav class="nav-links">
 
@@ -46,7 +1697,10 @@
 
         </nav>
 
-        <a href="tel:2152717878" class="header-phone">
+
+        <a
+            class="header-phone"
+            href="tel:2152717878">
             (215) 271-7878
         </a>
 
@@ -57,139 +1711,144 @@
 
 <main id="top">
 
-    <!-- =========================
-         HERO
-    ========================= -->
 
-    <section class="hero">
+<!-- ======================================
+     HERO
+======================================= -->
 
-        <div class="hero-text">
+<section class="hero">
 
-            <p class="eyebrow">
-                SOUTH PHILADELPHIA • EST. 1947
+    <div class="hero-text">
+
+        <p class="eyebrow">
+            South Philadelphia • Est. 1947
+        </p>
+
+        <h1>
+            Made by hand.<br>
+            Made to be<br>
+            remembered.
+        </h1>
+
+        <p class="hero-description">
+            For generations, Frangelli's has been making old-fashioned
+            Italian-American bakery favorites right here in South Philly.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                class="btn btn-primary"
+                href="#favorites">
+                See Our Favorites
+            </a>
+
+            <a
+                class="btn btn-outline"
+                href="#story">
+                Our Story
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image-wrap">
+
+        <img
+            class="hero-image"
+            src="https://frangellis.com/images/franolli.jpg?crc=222367972"
+            alt="Frangelli's Franolli"
+        >
+
+        <div class="image-caption">
+
+            <span>THE FAMOUS</span>
+
+            <strong>FRANOLLI</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================
+     STORY
+======================================= -->
+
+<section id="story" class="section story-section">
+
+    <p class="eyebrow">
+        A South Philly Tradition
+    </p>
+
+    <h2>
+        Nearly 80 years<br>
+        of making people happy.
+    </h2>
+
+
+    <div class="story-grid">
+
+        <div class="year-card">
+
+            <span>EST.</span>
+
+            <strong>1947</strong>
+
+            <p>
+                Philadelphia, PA
             </p>
 
-            <h1>
-                Made by hand.<br>
-                Made to be<br>
-                remembered.
-            </h1>
+        </div>
 
-            <p class="hero-description">
-                For generations, Frangelli's has been making old-fashioned
-                Italian-American bakery favorites right here in South Philly.
+
+        <div class="story-copy">
+
+            <p>
+                Joseph Frangelli opened Frangelli's Bakery in 1947
+                at 9th & Jackson Streets.
             </p>
 
-            <div class="hero-buttons">
-
-                <a href="#favorites" class="btn btn-primary">
-                    See Our Favorites
-                </a>
-
-                <a href="#story" class="btn btn-outline">
-                    Our Story
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="hero-image-wrap">
-
-            <div class="wood-corner"></div>
-
-            <img
-                src="https://frangellis.com/images/franolli.jpg?crc=222367972"
-                alt="Frangelli's famous Franolli"
-                class="hero-image"
-            >
-
-            <div class="image-caption">
-
-                <span>THE FAMOUS</span>
-
-                <strong>FRANOLLI</strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         STORY
-    ========================= -->
-
-    <section id="story" class="story-section section">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                A SOUTH PHILLY TRADITION
+            <p>
+                The bakery eventually moved to its current location
+                on West Ritner Street in 1994.
             </p>
 
-            <h2>
-                Nearly 80 years<br>
-                of making people happy.
-            </h2>
+            <p>
+                Today, Frangelli's continues the tradition with
+                handmade doughnuts, cakes, cookies and other
+                Italian-American favorites.
+            </p>
+
+            <p>
+                The idea has stayed simple: make great food by hand,
+                serve the neighborhood, and give people a reason
+                to come back.
+            </p>
 
         </div>
 
+    </div>
 
-        <div class="story-grid">
-
-            <div class="year-card">
-
-                <span>EST.</span>
-
-                <strong>1947</strong>
-
-                <p>
-                    Philadelphia, PA
-                </p>
-
-            </div>
+</section>
 
 
-            <div class="story-copy">
+<!-- ======================================
+     FAVORITES
+======================================= -->
 
-                <p>
-                    Joseph Frangelli opened Frangelli's Bakery in 1947 at
-                    9th & Jackson Streets. The bakery eventually moved to
-                    its current location on West Ritner Street in 1994.
-                </p>
+<section id="favorites" class="favorites-section">
 
-                <p>
-                    Today, the bakery continues the tradition of handmade
-                    doughnuts, cakes, cookies and other Italian-American
-                    favorites.
-                </p>
+    <div class="favorites-inner">
 
-                <p>
-                    The focus has stayed simple: make great food by hand,
-                    serve the neighborhood, and give people a reason to
-                    come back.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FAVORITES
-    ========================= -->
-
-    <section id="favorites" class="favorites-section section">
-
-        <div class="section-heading centered">
+        <div class="favorites-intro centered">
 
             <p class="eyebrow">
-                THE CLASSICS
+                The Classics
             </p>
 
             <h2>
@@ -197,8 +1856,8 @@
             </h2>
 
             <p>
-                A few of the things that have made Frangelli's a South
-                Philly favorite for generations.
+                A few of the things that have made Frangelli's
+                a South Philly favorite for generations.
             </p>
 
         </div>
@@ -207,24 +1866,17 @@
         <div class="favorites-grid">
 
 
-            <!-- FRANOLLI -->
-
             <article class="food-card">
 
-                <div class="food-image-wrap">
+                <img
+                    class="food-image"
+                    src="https://frangellis.com/images/franolli.jpg?crc=222367972"
+                    alt="Franolli"
+                >
 
-                    <img
-                        src="https://frangellis.com/images/franolli.jpg?crc=222367972"
-                        alt="Franolli"
-                        class="food-image"
-                    >
+                <div class="food-content">
 
-                </div>
-
-
-                <div class="food-card-content">
-
-                    <p class="card-number">
+                    <p class="food-number">
                         01
                     </p>
 
@@ -233,11 +1885,13 @@
                     </h3>
 
                     <p>
-                        Philly's answer to the Cronut. A doughnut filled
-                        with the bakery's cannoli cream.
+                        Philly's answer to the Cronut — a doughnut
+                        filled with cannoli cream.
                     </p>
 
-                    <a href="#franolli" class="text-link">
+                    <a
+                        class="text-link"
+                        href="#franolli">
                         The Franolli story →
                     </a>
 
@@ -246,24 +1900,17 @@
             </article>
 
 
-            <!-- ICE CREAM DOUGHNUT -->
-
             <article class="food-card">
 
-                <div class="food-image-wrap">
+                <img
+                    class="food-image"
+                    src="https://frangellis.com/images/ice-cream-donut.jpg?crc=4190406333"
+                    alt="Ice cream doughnut"
+                >
 
-                    <img
-                        src="https://frangellis.com/images/ice-cream-donut.jpg?crc=4190406333"
-                        alt="Ice cream doughnut"
-                        class="food-image"
-                    >
+                <div class="food-content">
 
-                </div>
-
-
-                <div class="food-card-content">
-
-                    <p class="card-number">
+                    <p class="food-number">
                         02
                     </p>
 
@@ -272,11 +1919,13 @@
                     </h3>
 
                     <p>
-                        A Frangelli's favorite that combines a fresh
+                        A Frangelli's favorite combining a fresh
                         doughnut with cool, creamy ice cream.
                     </p>
 
-                    <a href="#visit" class="text-link">
+                    <a
+                        class="text-link"
+                        href="#visit">
                         Come try one →
                     </a>
 
@@ -285,24 +1934,17 @@
             </article>
 
 
-            <!-- STICKY BUN -->
-
             <article class="food-card">
 
-                <div class="food-image-wrap">
+                <img
+                    class="food-image"
+                    src="https://frangellis.com/images/sticky-bun.jpg?crc=4190286994"
+                    alt="Sticky bun"
+                >
 
-                    <img
-                        src="https://frangellis.com/images/sticky-bun.jpg?crc=4190286994"
-                        alt="Sticky bun"
-                        class="food-image"
-                    >
+                <div class="food-content">
 
-                </div>
-
-
-                <div class="food-card-content">
-
-                    <p class="card-number">
+                    <p class="food-number">
                         03
                     </p>
 
@@ -311,10 +1953,13 @@
                     </h3>
 
                     <p>
-                        A classic bakery favorite made the Frangelli's way.
+                        A classic bakery favorite made the
+                        Frangelli's way.
                     </p>
 
-                    <a href="#visit" class="text-link">
+                    <a
+                        class="text-link"
+                        href="#visit">
                         Visit the bakery →
                     </a>
 
@@ -324,285 +1969,288 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         HANDMADE STRIP
-    ========================= -->
+<!-- ======================================
+     HANDMADE
+======================================= -->
 
-    <section class="handmade-strip">
+<section class="handmade-strip">
 
-        <div class="handmade-item">
+    <div class="handmade-item">
 
-            <span class="handmade-icon">
-                01
-            </span>
+        <span class="handmade-icon">
+            01
+        </span>
 
-            <div>
+        <div>
 
-                <strong>
-                    Hand Cut
-                </strong>
+            <strong>
+                Hand Cut
+            </strong>
 
-                <p>
-                    Every doughnut is cut by hand.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="handmade-item">
-
-            <span class="handmade-icon">
-                02
-            </span>
-
-            <div>
-
-                <strong>
-                    Hand Pumped
-                </strong>
-
-                <p>
-                    Every filled doughnut is pumped to order.
-                </p>
-
-            </div>
+            <p>
+                Every doughnut is cut by hand.
+            </p>
 
         </div>
 
-
-        <div class="handmade-item">
-
-            <span class="handmade-icon">
-                03
-            </span>
-
-            <div>
-
-                <strong>
-                    Made To Order
-                </strong>
-
-                <p>
-                    Freshness has always mattered here.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
+    </div>
 
 
-    <!-- =========================
-         FRANOLLI STORY
-    ========================= -->
+    <div class="handmade-item">
 
-    <section id="franolli" class="feature-section section">
+        <span class="handmade-icon">
+            02
+        </span>
 
-        <div class="feature-image-wrap">
+        <div>
 
-            <img
-                src="https://frangellis.com/images/franolli-sio-web.png?crc=3968329548"
-                alt="Frangelli's Franolli"
-                class="feature-image"
-            >
+            <strong>
+                Hand Pumped
+            </strong>
+
+            <p>
+                Every filled doughnut is pumped to order.
+            </p>
 
         </div>
 
+    </div>
 
-        <div class="feature-content">
+
+    <div class="handmade-item">
+
+        <span class="handmade-icon">
+            03
+        </span>
+
+        <div>
+
+            <strong>
+                Made To Order
+            </strong>
+
+            <p>
+                Freshness has always mattered here.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================
+     FRANOLLI STORY
+======================================= -->
+
+<section id="franolli" class="section feature-section">
+
+    <div class="feature-image-wrap">
+
+        <img
+            class="feature-image"
+            src="https://frangellis.com/images/franolli-sio-web.png?crc=3968329548"
+            alt="The Frangelli's Franolli"
+        >
+
+    </div>
+
+
+    <div class="feature-content">
+
+        <p class="eyebrow">
+            Philly's Own
+        </p>
+
+        <h2>
+            Meet the<br>
+            Franolli.
+        </h2>
+
+        <p>
+            The Franolli was created at Frangelli's in 2015
+            while experimenting with cannoli cream and doughnut dough.
+        </p>
+
+        <p>
+            While making the ricotta filling for cannoli, a piece
+            of doughnut was combined with the cream. The combination
+            turned out to be surprisingly good.
+        </p>
+
+        <blockquote>
+            “NY has the Cronut.<br>
+            Philly has the Franolli.”
+        </blockquote>
+
+        <p>
+            What started as an experiment quickly became one of
+            Frangelli's signature creations and a South Philly favorite.
+        </p>
+
+        <p class="small-note">
+            The Franolli has been featured on FYI Philly, The Chew,
+            The Steve Harvey Show and The Harry Connick Jr. Show.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================
+     DID YOU KNOW
+======================================= -->
+
+<section class="did-you-know">
+
+    <div class="did-you-know-card">
+
+        <div class="did-you-know-title">
 
             <p class="eyebrow">
-                PHILLY'S OWN
+                A Little Bakery History
             </p>
 
             <h2>
-                Meet the<br>
-                Franolli.
+                Did you know?
             </h2>
-
-            <p>
-                The Franolli was born at Frangelli's in 2015 while
-                experimenting with cannoli cream and doughnut dough.
-            </p>
-
-            <p>
-                While making the ricotta filling for cannoli, a piece of
-                doughnut was combined with the cream. The combination
-                turned out to be surprisingly good.
-            </p>
-
-            <blockquote>
-                “NY has the Cronut.<br>
-                Philly has the Franolli.”
-            </blockquote>
-
-            <p>
-                What started as an experiment quickly became one of
-                Frangelli's signature creations and a South Philly favorite.
-            </p>
-
-            <p class="small-note">
-                The Franolli has been featured on FYI Philly, The Chew,
-                The Steve Harvey Show and The Harry Connick Jr. Show.
-            </p>
 
         </div>
 
-    </section>
+
+        <div class="fact-grid">
 
 
-    <!-- =========================
-         DID YOU KNOW
-    ========================= -->
+            <div class="fact">
 
-    <section class="did-you-know section">
-
-        <div class="did-you-know-card">
-
-            <div class="did-you-know-title">
-
-                <span class="eyebrow">
-                    A LITTLE BAKERY HISTORY
+                <span class="fact-number">
+                    01
                 </span>
 
-                <h2>
-                    Did you know?
-                </h2>
+                <div>
 
-            </div>
+                    <h3>
+                        The Franolli has a story.
+                    </h3>
 
-
-            <div class="did-you-know-content">
-
-
-                <div class="fact">
-
-                    <span class="fact-number">
-                        01
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            The Franolli has a story.
-                        </h3>
-
-                        <p>
-                            The idea came about when cannoli ricotta was
-                            being prepared and a piece of doughnut was
-                            combined with it. The combination was so good
-                            that it became a Frangelli's specialty.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="fact">
-
-                    <span class="fact-number">
-                        02
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Handmade really means handmade.
-                        </h3>
-
-                        <p>
-                            Frangelli's says its doughnuts are hand-cut
-                            and hand-pumped to order.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="fact">
-
-                    <span class="fact-number">
-                        03
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            A South Philly tradition.
-                        </h3>
-
-                        <p>
-                            Frangelli's has been part of Philadelphia's
-                            bakery scene since 1947.
-                        </p>
-
-                    </div>
+                    <p>
+                        The idea began when cannoli ricotta was being
+                        prepared and a piece of doughnut was combined
+                        with it. The combination became a Frangelli's
+                        specialty.
+                    </p>
 
                 </div>
 
             </div>
 
+
+            <div class="fact">
+
+                <span class="fact-number">
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        Handmade really means handmade.
+                    </h3>
+
+                    <p>
+                        Frangelli's says its doughnuts are hand-cut
+                        and hand-pumped to order.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="fact">
+
+                <span class="fact-number">
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        A South Philly tradition.
+                    </h3>
+
+                    <p>
+                        Frangelli's has been part of Philadelphia's
+                        bakery scene since 1947.
+                    </p>
+
+                </div>
+
+            </div>
+
+
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         VIDEO
-    ========================= -->
+<!-- ======================================
+     VIDEO
+======================================= -->
 
-    <section class="video-section section">
+<section class="section video-section">
 
-        <div class="section-heading centered">
+    <div class="centered">
+
+        <p class="eyebrow">
+            From The Outside Looking In
+        </p>
+
+        <h2>
+            It's official, they love us!
+        </h2>
+
+        <p class="video-description">
+            See why people keep talking about Frangelli's.
+        </p>
+
+    </div>
+
+
+    <div class="video-wrapper">
+
+        <iframe
+            src="https://www.youtube.com/embed/REbc7aK86PY?start=46"
+            title="Frangelli's Bakery feature"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================
+     REVIEWS
+======================================= -->
+
+<section id="reviews" class="reviews-section">
+
+    <div class="reviews-inner">
+
+        <div class="centered">
 
             <p class="eyebrow">
-                FROM THE OUTSIDE LOOKING IN
-            </p>
-
-            <h2>
-                It's official, they love us!
-            </h2>
-
-            <p>
-                See why people keep talking about Frangelli's.
-            </p>
-
-        </div>
-
-
-        <div class="video-wrapper">
-
-            <iframe
-                src="https://www.youtube.com/embed/REbc7aK86PY?start=46"
-                title="Frangelli's Bakery feature"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         REVIEWS
-    ========================= -->
-
-    <section id="reviews" class="reviews-section section">
-
-        <div class="section-heading centered">
-
-            <p class="eyebrow">
-                WHAT PEOPLE SAY
+                What People Say
             </p>
 
             <h2>
@@ -617,12 +2265,13 @@
 
             <article class="review-card">
 
-                <span class="quote-mark">
+                <span class="quote">
                     “
                 </span>
 
                 <p>
-                    Frangelli's makes the best doughnuts in Philadelphia.
+                    Frangelli's makes the best doughnuts
+                    in Philadelphia.
                 </p>
 
                 <span class="review-source">
@@ -634,7 +2283,7 @@
 
             <article class="review-card">
 
-                <span class="quote-mark">
+                <span class="quote">
                     “
                 </span>
 
@@ -651,7 +2300,7 @@
 
             <article class="review-card">
 
-                <span class="quote-mark">
+                <span class="quote">
                     “
                 </span>
 
@@ -668,7 +2317,7 @@
 
             <article class="review-card">
 
-                <span class="quote-mark">
+                <span class="quote">
                     “
                 </span>
 
@@ -683,167 +2332,171 @@
 
             </article>
 
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         VISIT
-    ========================= -->
-
-    <section id="visit" class="visit-section section">
-
-        <div class="visit-content">
-
-            <p class="eyebrow">
-                COME SEE US
-            </p>
-
-            <h2>
-                Find us in<br>
-                South Philly.
-            </h2>
-
-            <p class="visit-description">
-                Stop by for a doughnut, a Franolli, a cake, or just
-                something sweet.
-            </p>
-
-
-            <div class="address">
-
-                <strong>
-                    Frangelli's Bakery
-                </strong>
-
-                <span>
-                    847 West Ritner Street
-                </span>
-
-                <span>
-                    Philadelphia, PA 19148
-                </span>
-
-                <span>
-                    (215) 271-7878
-                </span>
-
-            </div>
-
-
-            <a
-                href="https://www.google.com/maps/search/?api=1&query=847+West+Ritner+Street+Philadelphia+PA+19148"
-                target="_blank"
-                rel="noopener"
-                class="btn btn-primary">
-                Get Directions
-            </a>
 
         </div>
 
+    </div>
 
-        <div class="hours-card">
-
-            <p class="eyebrow">
-                HOURS
-            </p>
+</section>
 
 
-            <div class="hours-row">
-                <span>Monday</span>
-                <strong>Closed</strong>
-            </div>
+<!-- ======================================
+     VISIT
+======================================= -->
 
-            <div class="hours-row">
-                <span>Tuesday</span>
-                <strong>7:00 AM – 4:00 PM</strong>
-            </div>
+<section id="visit" class="section visit-section">
 
-            <div class="hours-row">
-                <span>Wednesday</span>
-                <strong>7:00 AM – 4:00 PM</strong>
-            </div>
-
-            <div class="hours-row">
-                <span>Thursday</span>
-                <strong>7:00 AM – 4:00 PM</strong>
-            </div>
-
-            <div class="hours-row">
-                <span>Friday</span>
-                <strong>7:00 AM – 4:00 PM</strong>
-            </div>
-
-            <div class="hours-row">
-                <span>Saturday</span>
-                <strong>7:00 AM – 4:00 PM</strong>
-            </div>
-
-            <div class="hours-row">
-                <span>Sunday</span>
-                <strong>Closed</strong>
-            </div>
-
-
-            <p class="hours-note">
-                Hours may vary depending on supply.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         SOCIAL
-    ========================= -->
-
-    <section class="social-section">
+    <div>
 
         <p class="eyebrow">
-            KEEP UP WITH US
+            Come See Us
         </p>
 
         <h2>
-            Sweet things are<br>
-            happening.
+            Find us in<br>
+            South Philly.
         </h2>
 
+        <p class="visit-description">
+            Stop by for a doughnut, a Franolli, a cake,
+            or just something sweet.
+        </p>
 
-        <div class="social-links">
 
-            <a
-                href="https://www.instagram.com/frangellisbakery/"
-                target="_blank"
-                rel="noopener">
-                Instagram
-            </a>
+        <div class="address">
 
-            <a
-                href="https://www.facebook.com/frangellisbakery/"
-                target="_blank"
-                rel="noopener">
-                Facebook
-            </a>
+            <strong>
+                Frangelli's Bakery
+            </strong>
 
-            <a
-                href="https://frangellis.com/"
-                target="_blank"
-                rel="noopener">
-                Official Website
-            </a>
+            <span>
+                847 West Ritner Street
+            </span>
+
+            <span>
+                Philadelphia, PA 19148
+            </span>
+
+            <span>
+                (215) 271-7878
+            </span>
 
         </div>
 
-    </section>
+
+        <a
+            class="btn btn-primary"
+            href="https://www.google.com/maps/search/?api=1&query=847+West+Ritner+Street+Philadelphia+PA+19148"
+            target="_blank"
+            rel="noopener">
+            Get Directions
+        </a>
+
+    </div>
+
+
+    <div class="hours-card">
+
+        <p class="eyebrow">
+            Hours
+        </p>
+
+
+        <div class="hours-row">
+            <span>Monday</span>
+            <strong>Closed</strong>
+        </div>
+
+        <div class="hours-row">
+            <span>Tuesday</span>
+            <strong>7 AM – 4 PM</strong>
+        </div>
+
+        <div class="hours-row">
+            <span>Wednesday</span>
+            <strong>7 AM – 4 PM</strong>
+        </div>
+
+        <div class="hours-row">
+            <span>Thursday</span>
+            <strong>7 AM – 4 PM</strong>
+        </div>
+
+        <div class="hours-row">
+            <span>Friday</span>
+            <strong>7 AM – 4 PM</strong>
+        </div>
+
+        <div class="hours-row">
+            <span>Saturday</span>
+            <strong>7 AM – 4 PM</strong>
+        </div>
+
+        <div class="hours-row">
+            <span>Sunday</span>
+            <strong>Closed</strong>
+        </div>
+
+
+        <p class="hours-note">
+            Hours may vary depending on supply.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================
+     SOCIAL
+======================================= -->
+
+<section class="social-section">
+
+    <p class="eyebrow">
+        Keep Up With Us
+    </p>
+
+    <h2>
+        Sweet things are<br>
+        happening.
+    </h2>
+
+
+    <div class="social-links">
+
+        <a
+            href="https://www.instagram.com/frangellisbakery/"
+            target="_blank"
+            rel="noopener">
+            Instagram
+        </a>
+
+        <a
+            href="https://www.facebook.com/frangellisbakery/"
+            target="_blank"
+            rel="noopener">
+            Facebook
+        </a>
+
+        <a
+            href="https://frangellis.com/"
+            target="_blank"
+            rel="noopener">
+            Official Website
+        </a>
+
+    </div>
+
+</section>
+
 
 </main>
 
 
-<!-- =========================
+<!-- ======================================
      FOOTER
-========================= -->
+======================================= -->
 
 <footer class="site-footer">
 
@@ -852,9 +2505,9 @@
         <div>
 
             <img
+                class="footer-logo"
                 src="https://frangellis.com/images/frangellis-logo-clear.png?crc=4238155147"
                 alt="Frangelli's Bakery"
-                class="footer-logo"
             >
 
         </div>
@@ -862,17 +2515,11 @@
 
         <div class="footer-info">
 
-            <p>
-                847 West Ritner Street
-            </p>
+            <p>847 West Ritner Street</p>
 
-            <p>
-                Philadelphia, PA 19148
-            </p>
+            <p>Philadelphia, PA 19148</p>
 
-            <p>
-                (215) 271-7878
-            </p>
+            <p>(215) 271-7878</p>
 
         </div>
 
@@ -892,6 +2539,7 @@
     </div>
 
 </footer>
+
 
 </body>
 </html>
