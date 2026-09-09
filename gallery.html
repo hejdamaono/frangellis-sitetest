@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Frangelli's Bakery | Creations Gallery</title>
+
+<style>
+
+:root {
+    --cream: #f4ecdf;
+    --cream-light: #fffaf2;
+    --cream-dark: #dfcdb7;
+
+    --wood-dark: #29170e;
+    --wood: #4b2b1b;
+    --wood-mid: #68432c;
+
+    --brown: #352117;
+    --brown-light: #705746;
+
+    --red: #914333;
+    --red-dark: #713126;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4ecdf,
+            #eadbc7
+        );
+
+    color: var(--brown);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    background: rgba(255,250,242,.97);
+
+    border-bottom:
+        1px solid var(--cream-dark);
+
+    box-shadow:
+        0 4px 20px rgba(45,25,14,.08);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+
+    padding: 16px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.logo {
+    width: 160px;
+
+    transition:
+        transform .3s ease;
+}
+
+.logo:hover {
+    transform:
+        translateY(-2px)
+        rotate(-1deg);
+}
+
+nav {
+    display: flex;
+
+    gap: 28px;
+}
+
+nav a {
+    position: relative;
+
+    color: var(--brown);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+}
+
+nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--red);
+
+    transition: width .25s ease;
+}
+
+nav a:hover {
+    color: var(--red);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+/* ================================
+   PAGE
+================================ */
+
+.gallery-page {
+    max-width: 1250px;
+
+    margin: 45px auto;
+
+    padding: 15px;
+
+    background: var(--cream-light);
+
+    border:
+        1px solid var(--cream-dark);
+
+    box-shadow:
+        0 18px 50px rgba(48,27,15,.12);
+}
+
+
+/* ================================
+   TITLE
+================================ */
+
+.gallery-heading {
+    padding:
+        45px 20px 35px;
+
+    text-align: center;
+}
+
+.gallery-heading h1 {
+    margin: 0;
+
+    color: #955846;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(45px, 6vw, 72px);
+
+    font-weight: 400;
+
+    letter-spacing: -.04em;
+}
+
+.gallery-heading p {
+    margin:
+        12px auto 0;
+
+    color: var(--brown-light);
+
+    font-size: 13px;
+}
+
+
+/* ================================
+   WOOD DIVIDER
+================================ */
+
+.wood-divider {
+    height: 12px;
+
+    margin:
+        0 10px 35px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--wood-dark) 0,
+            var(--wood) 12px,
+            var(--wood-mid) 20px,
+            var(--wood) 30px,
+            var(--wood-dark) 40px
+        );
+}
+
+
+/* ================================
+   GALLERY
+================================ */
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    padding:
+        0 10px 35px;
+}
+
+.gallery-item {
+    position: relative;
+
+    overflow: hidden;
+
+    aspect-ratio: 1 / 1;
+
+    background: #dfcdb7;
+
+    border:
+        4px solid white;
+
+    box-shadow:
+        0 7px 16px rgba(48,27,15,.10);
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.gallery-item:hover {
+    transform:
+        translateY(-5px)
+        rotate(-.5deg);
+
+    box-shadow:
+        0 15px 28px rgba(48,27,15,.18);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform .5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+
+/* ================================
+   FEATURED IMAGE
+================================ */
+
+.featured {
+    grid-column:
+        span 2;
+
+    grid-row:
+        span 2;
+
+    aspect-ratio: auto;
+
+    min-height: 500px;
+}
+
+.featured img {
+    object-fit: cover;
+}
+
+.feature-label {
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    padding:
+        13px 18px;
+
+    color: white;
+
+    background:
+        rgba(41,23,14,.9);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 20px;
+}
+
+
+/* ================================
+   BOTTOM
+================================ */
+
+.gallery-bottom {
+    margin-top: 20px;
+
+    padding:
+        45px 25px;
+
+    color: white;
+
+    text-align: center;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--wood-dark) 0,
+            var(--wood) 12px,
+            var(--wood-mid) 20px,
+            var(--wood) 30px,
+            var(--wood-dark) 40px
+        );
+}
+
+.gallery-bottom h2 {
+    margin:
+        0 0 12px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 36px;
+
+    font-weight: 400;
+}
+
+.gallery-bottom p {
+    margin: 0 auto 25px;
+
+    max-width: 550px;
+
+    color: #d8c7b9;
+
+    font-size: 13px;
+}
+
+.back-button {
+    display: inline-block;
+
+    padding:
+        13px 22px;
+
+    color: white;
+
+    border:
+        1px solid rgba(255,255,255,.55);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.back-button:hover {
+    background: white;
+
+    color: var(--wood);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    margin-top: 45px;
+
+    padding:
+        35px 20px;
+
+    color: #bba99c;
+
+    text-align: center;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #21130c 0,
+            #2f1a10 12px,
+            #422617 20px,
+            #24140c 30px
+        );
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 800px) {
+
+    .header-inner {
+        flex-direction: column;
+
+        padding:
+            14px 18px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap:
+            10px 18px;
+    }
+
+    .gallery-page {
+        margin:
+            20px 10px;
+    }
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .featured {
+        grid-column:
+            span 2;
+
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .gallery-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .featured {
+        grid-column:
+            span 1;
+
+        min-height: 350px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="index.html">
+
+            <img
+                class="logo"
+                src="https://frangellis.com/images/frangellis-logo-clear.png?crc=4238155147"
+                alt="Frangelli's Bakery"
+            >
+
+        </a>
+
+
+        <nav>
+
+            <a href="index.html#story">
+                Our Story
+            </a>
+
+            <a href="index.html#favorites">
+                Favorites
+            </a>
+
+            <a href="index.html#franolli">
+                Franolli
+            </a>
+
+            <a href="index.html#reviews">
+                Reviews
+            </a>
+
+            <a href="index.html#visit">
+                Visit
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="gallery-page">
+
+
+    <section class="gallery-heading">
+
+        <h1>
+            Creations Gallery
+        </h1>
+
+        <p>
+            A look at some of the cakes, doughnuts and sweets
+            made at Frangelli's.
+        </p>
+
+    </section>
+
+
+    <div class="wood-divider"></div>
+
+
+    <section class="gallery-grid">
+
+
+        <!-- FEATURED -->
+
+        <div class="gallery-item featured">
+
+            <img
+                src="https://frangellis.com/images/franolli.jpg?crc=222367972"
+                alt="Frangelli's creation"
+            >
+
+            <div class="feature-label">
+                Frangelli's Creations
+            </div>
+
+        </div>
+
+
+        <!-- GALLERY IMAGES -->
+
+        <div class="gallery-item">
+
+            <img
+                src="https://frangellis.com/images/ice-cream-donut.jpg?crc=4190406333"
+                alt="Ice cream doughnut"
+            >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img
+                src="https://frangellis.com/images/sticky-bun.jpg?crc=4190286994"
+                alt="Sticky bun"
+            >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img
+                src="https://frangellis.com/images/franolli-sio-web.png?crc=3968329548"
+                alt="Franolli"
+            >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img
+                src="https://frangellis.com/images/u1207-4.png?crc=383937028"
+                alt="Frangelli's bakery creation"
+            >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img
+                src="https://frangellis.com/images/u1208-4.png?crc=3980393573"
+                alt="Frangelli's bakery creation"
+            >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img
+                src="https://frangellis.com/images/u1209-4.png?crc=435516728"
+                alt="Frangelli's bakery creation"
+            >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img
+                src="https://frangellis.com/images/u874-4.png?crc=72195270"
+                alt="Frangelli's bakery creation"
+            >
+
+        </div>
+
+
+    </section>
+
+
+    <section class="gallery-bottom">
+
+        <h2>
+            Made by hand. Made with tradition.
+        </h2>
+
+        <p>
+            Every doughnut is hand cut and every filled doughnut
+            is hand pumped to order.
+        </p>
+
+        <a
+            class="back-button"
+            href="index.html">
+            Back to Frangelli's
+        </a>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    Frangelli's Bakery • 847 West Ritner Street •
+    Philadelphia, PA 19148 • (215) 271-7878
+
+</footer>
+
+
+</body>
+</html>
